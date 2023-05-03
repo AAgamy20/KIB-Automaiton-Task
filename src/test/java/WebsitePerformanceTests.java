@@ -9,6 +9,7 @@ import org.openqa.selenium.devtools.v106.performance.Performance;
 import org.openqa.selenium.devtools.v106.performance.model.Metric;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -74,6 +75,13 @@ public class WebsitePerformanceTests {
         new WebDriverWait(driver, Duration.ofSeconds(60)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//a[@href=\"#performance\"])[4]")));
         //Taking a screenshot of the scores and adding it to the html execution report
         ExtentReport.info(Logger.attachScreenshotToExtentReport(driver));
+
+    }
+
+
+    @AfterMethod
+    public void cleanUp() {
+        driver.close();
 
     }
 
